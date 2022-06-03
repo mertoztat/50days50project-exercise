@@ -4,12 +4,12 @@ const nav = document.querySelectorAll(".nav");
 
 openBtn.addEventListener("click", () => {
   nav.forEach((nav) => {
-    nav.classList.toggle("visible");
+    nav.classList.add("visible");
   });
 });
 
 closeBtn.addEventListener("click", () => {
   nav.forEach((nav) => {
-    nav.classList.toggle("visible");
+    nav.classList.remove("visible");
   });
 });
