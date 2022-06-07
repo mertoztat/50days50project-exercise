@@ -51,23 +51,31 @@ function loadQuiz() {
   deselectAnswers();
 
   const currentQuizData = quizData[currentQuiz];
+  // currentQuiz'in indexine göre quizData içinden denk geldiği array indexteki soruyu seç.
 
   questionEl.innerText = currentQuizData.question;
+  // Question sorusunun başladığı yer
+
+  // currentQuiz indexine göre match olan sorunun cevaplarını seçme
   a_text.innerText = currentQuizData.a;
   b_text.innerText = currentQuizData.b;
   c_text.innerText = currentQuizData.c;
   d_text.innerText = currentQuizData.d;
 }
 
+// inputun başlangıç check halini false yapan fonksiyon.
 function deselectAnswers() {
+  // inputtaki bütün checkedleri false a çekiyoruz ilk başta ki yanıtsız olarak gözüksün.
   answerEls.forEach((answerEl) => (answerEl.checked = false));
 }
 
+// inputun checkindeki seçili cevabı alan fonk.
 function getSelected() {
   let answer;
 
   answerEls.forEach((answerEl) => {
     if (answerEl.checked) {
+      // işaretlenen yani checked olan cevabın id sine ulaşarak hangi cevap olduğunu belirliyoruz
       answer = answerEl.id;
     }
   });
@@ -79,6 +87,8 @@ submitBtn.addEventListener("click", () => {
   const answer = getSelected();
 
   if (answer) {
+    // answerdaki cevabın quizdatadaki eşleşen array indeksindeki cevabı kontrol etme durumu
+    // doğruysa cevabı bildin değilse yanlış.
     if (answer === quizData[currentQuiz].correct) {
       score++;
     }
@@ -86,6 +96,7 @@ submitBtn.addEventListener("click", () => {
     currentQuiz++;
 
     if (currentQuiz < quizData.length) {
+      //  buton submit olduğunda 4 soruyu da cevapladıktan sonra en başa döndürüyor.
       loadQuiz();
     } else {
       quiz.innerHTML = `
